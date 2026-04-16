@@ -1,0 +1,26 @@
+elisaardinghi.it, www.elisaardinghi.it {
+    # Redirige www a non-www
+    @www host www.elisaardinghi.it
+    redir @www https://elisaardinghi.it{uri}
+
+    root * /var/www/elisaardinghi
+    file_server
+
+    encode gzip zstd
+
+    # Fallback su index.html per la SPA del Decap CMS (es. /admin)
+    try_files {path} {path}/ /index.html
+
+    # Headers base per sicurezza
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+    }
+
+    # Cache per file statici (immagini, JS, CSS)
+    @static {
+        path *.ico *.css *.js *.gif *.webp *.avif *.jpg *.jpeg *.png *.svg *.woff *.woff2
+    }
+    header @static Cache-Control "public, max-age=31536000, immutable"
+}

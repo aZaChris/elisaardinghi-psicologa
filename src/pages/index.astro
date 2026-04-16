@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Header />
+  
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex flex-col justify-center min-h-[90vh]">
+      <!-- Background pattern -->
+      <div class="absolute inset-0 z-0 opacity-[0.08]" style="background-image: radial-gradient(var(--color-accent) 2px, transparent 2px); background-size: 32px 32px;"></div>
+      
+      <div class="max-w-6xl mx-auto px-4 md:px-6 relative z-10 w-full flex-grow flex items-center">
+        <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20 w-full">
+          <div class="flex-1 text-center md:text-left">
+             <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-text leading-tight mb-6">
+               Uno spazio per <br/><span class="text-primary italic">prendersi cura.</span>
+             </h1>
+             <p class="text-lg md:text-xl text-muted mb-8 max-w-xl mx-auto md:mx-0 leading-relaxed">
+               Supporto psicologico per caregiver, famiglie e bambini. In studio a Cintolese (PT) e online.
+             </p>
+             <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+               <a href="#prenota" class="w-full sm:w-auto bg-primary text-white hover:bg-secondary px-8 py-4 rounded-xl text-lg font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                 Prenota un colloquio
+               </a>
+               <a href="/chi-sono" class="w-full sm:w-auto bg-surface text-primary border border-primary/20 hover:border-primary/50 px-8 py-4 rounded-xl text-lg font-medium transition-all">
+                 Scopri chi sono
+               </a>
+             </div>
+          </div>
+          
+          <div class="flex-1 w-full max-w-md md:max-w-none relative">
+            <div class="aspect-[4/5] rounded-tl-[80px] rounded-br-[80px] rounded-tr-2xl rounded-bl-2xl overflow-hidden shadow-2xl relative">
+              <img src="/images/elisa-hero.jpg" alt="Elisa Ardinghi" class="w-full h-full object-cover bg-secondary/20" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNDMDg0QjAiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==';" />
+              <div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-tl-[80px] rounded-br-[80px] rounded-tr-2xl rounded-bl-2xl"></div>
+            </div>
+            <div class="absolute -bottom-6 -left-6 w-48 h-48 bg-secondary/30 rounded-full blur-3xl -z-10"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aree di Intervento -->
+    <section id="aree-intervento" class="py-24 bg-surface relative">
+      <div class="max-w-6xl mx-auto px-4 md:px-6">
+        <div class="text-center mb-16">
+          <span class="text-secondary font-medium tracking-wider uppercase text-sm mb-3 block">Servizi</span>
+          <h2 class="text-3xl md:text-4xl font-display font-medium text-text">Aree di intervento</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Card 1 -->
+          <div class="bg-bg p-8 rounded-2xl shadow-sm border border-primary/10 hover:shadow-md hover:border-secondary/40 transition-all group">
+            <div class="w-14 h-14 bg-accent/20 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <h3 class="text-xl font-display font-medium text-text mb-3">Caregiver e Alzheimer</h3>
+            <p class="text-muted leading-relaxed text-sm">Sostegno psicologico a chi si prende cura di un familiare con demenza. Colloqui individuali e gruppi di sostegno.</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-bg p-8 rounded-2xl shadow-sm border border-primary/10 hover:shadow-md hover:border-secondary/40 transition-all group">
+            <div class="w-14 h-14 bg-accent/20 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"></path><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path><path d="M12 2v2"></path><path d="M12 22v-2"></path><path d="m17 20.66-1-1.73"></path><path d="M11 10.27 7 3.34"></path><path d="m20.66 17-1.73-1"></path><path d="m3.34 7 1.73 1"></path><path d="M14 12h8"></path><path d="M2 12h2"></path><path d="m20.66 7-1.73 1"></path><path d="m3.34 17 1.73-1"></path><path d="m17 3.34-1 1.73"></path><path d="m11 13.73-4 6.93"></path></svg>
+            </div>
+            <h3 class="text-xl font-display font-medium text-text mb-3">Bambini e adolescenti</h3>
+            <p class="text-muted leading-relaxed text-sm">Percorsi personalizzati per bambini con BES, ADHD, DSA e difficoltà scolastico-relazionali.</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-bg p-8 rounded-2xl shadow-sm border border-primary/10 hover:shadow-md hover:border-secondary/40 transition-all group">
+            <div class="w-14 h-14 bg-accent/20 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <h3 class="text-xl font-display font-medium text-text mb-3">Disturbi d'ansia</h3>
+            <p class="text-muted leading-relaxed text-sm">Supporto per chi vive con ansia, attacchi di panico e difficoltà nella gestione emotiva.</p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="bg-bg p-8 rounded-2xl shadow-sm border border-primary/10 hover:shadow-md hover:border-secondary/40 transition-all group">
+            <div class="w-14 h-14 bg-accent/20 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            </div>
+            <h3 class="text-xl font-display font-medium text-text mb-3">Consulenza e orientamento</h3>
+            <p class="text-muted leading-relaxed text-sm">Primo colloquio di valutazione, orientamento ai servizi e supporto nel percorso clinico.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chi sono preview -->
+    <section class="py-24 max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="text-3xl font-display font-medium text-text mb-8">La dottoressa</h2>
+      <p class="text-lg text-muted mb-8 italic leading-relaxed">
+        "Laureata in Psicologia Clinica, del Lavoro e dello Sviluppo, iscritta all'Albo degli Psicologi della Toscana. Ho svolto il tirocinio presso l'Associazione Italiana Malattia di Alzheimer di Firenze, dove ho maturato esperienza nel sostegno ai caregiver e nei gruppi psicoeducativi."
+      </p>
+      <a href="/chi-sono" class="inline-flex items-center gap-2 text-primary font-medium hover:text-secondary transition-colors group text-lg">
+        Leggi di più 
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </section>
+
+    <!-- Prenota / Cal.com -->
+    <section id="prenota" class="py-24 bg-surface border-y border-primary/10">
+      <div class="max-w-4xl mx-auto px-4 md:px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-display font-medium text-text mb-6">Prenota un colloquio</h2>
+          <p class="text-lg text-muted">
+            Il primo passo è sempre il più difficile. Scrivimi o prenota direttamente un colloquio conoscitivo — gratuito e senza impegno.
+          </p>
+        </div>
+        
+        <div class="bg-bg rounded-2xl shadow-sm border border-primary/10 p-4 md:p-8 min-h-[600px] flex flex-col justify-center items-center">
+          <!-- Cal inline embed, fallback se JS non carica, o il widget carica qui -->
+          <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline"></div>
+          
+          <script type="text/javascript">
+            (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+            Cal("init", {origin:"https://cal.com"});
+            
+            Cal("inline", {
+              elementOrSelector:"#my-cal-inline",
+              calLink: "elisaardinghi",
+              layout: "month_view"
+            });
+            
+            Cal("ui", {"styles":{"branding":{"brandColor":"#8B2252"}},"hideEventTypeDetails":false,"layout":"month_view"});
+          </script>
+        </div>
+
+        <div class="mt-8 text-center">
+          <p class="text-muted">
+            Preferisci un altro metodo? <a href="/contatti" class="text-primary hover:underline font-medium">Vai ai contatti</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instagram Feed Placeholder -->
+    <section class="py-24 max-w-6xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-display font-medium text-text mb-4">Seguimi su Instagram</h2>
+        <a href="https://www.instagram.com/elisaardinghi.psy/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-primary hover:text-secondary transition-colors font-medium">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          @elisaardinghi.psy
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="aspect-square bg-surface border border-primary/10 rounded-2xl overflow-hidden group block hover:shadow-md transition-all">
+          <div class="w-full h-full flex flex-col items-center justify-center text-muted bg-primary/5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-2 opacity-50"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            <span class="text-sm opacity-50">Immagine 1</span>
+          </div>
+        </div>
+        <div class="aspect-square bg-surface border border-primary/10 rounded-2xl overflow-hidden group block hover:shadow-md transition-all">
+          <div class="w-full h-full flex flex-col items-center justify-center text-muted bg-primary/5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-2 opacity-50"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            <span class="text-sm opacity-50">Immagine 2</span>
+          </div>
+        </div>
+        <div class="aspect-square bg-surface border border-primary/10 rounded-2xl overflow-hidden group block hover:shadow-md transition-all">
+          <div class="w-full h-full flex flex-col items-center justify-center text-muted bg-primary/5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-2 opacity-50"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            <span class="text-sm opacity-50">Immagine 3</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Layout>

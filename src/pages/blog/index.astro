@@ -1,0 +1,135 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog', ({ data }) => {
+  return data.published === true;
+})).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Estrai tutti i tag univoci
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('it-IT', { year: 'numeric', month: 'long', day: 'numeric' });
+};
+---
+
+<Layout title="Articoli e Risorse" description="Esplora gli articoli della Dott.ssa Elisa Ardinghi su psicologia, supporto al caregiver e benessere mentale.">
+  <Header />
+  
+  <main class="flex-grow pt-32 pb-24 max-w-6xl mx-auto px-4 md:px-6 w-full">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-display font-medium text-text mb-4">Blog e Risorse</h1>
+      <p class="text-lg text-muted max-w-2xl mx-auto">Pensieri, approfondimenti e consigli pratici sul benessere psicologico e il supporto familiare.</p>
+    </div>
+
+    <!-- Tag Filter -->
+    {allTags.length > 0 && (
+      <div class="flex flex-wrap justify-center gap-3 mb-12" id="tag-filters">
+        <button class="tag-btn active py-2 px-5 rounded-full text-sm font-medium transition-all bg-primary text-white border border-primary shadow-sm" data-tag="all">
+          Tutti
+        </button>
+        {allTags.map(tag => (
+          <button class="tag-btn py-2 px-5 rounded-full text-sm font-medium transition-all bg-surface text-text border border-primary/10 hover:border-primary/40 hover:bg-white" data-tag={tag}>
+            {tag}
+          </button>
+        ))}
+      </div>
+    )}
+
+    <!-- Articoli Grid -->
+    {allPosts.length === 0 ? (
+      <div class="text-center py-20 bg-surface rounded-2xl border border-primary/10">
+        <p class="text-muted text-lg">Nessun articolo pubblicato al momento.</p>
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="posts-grid">
+        {allPosts.map((post) => (
+          <article class="post-card bg-bg rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-primary/10 group flex flex-col" data-tags={JSON.stringify(post.data.tags)}>
+            <a href={`/blog/${post.id}`} class="block aspect-video overflow-hidden relative">
+              {post.data.coverImage ? (
+                <img src={post.data.coverImage} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 bg-secondary/20" />
+              ) : (
+                <div class="w-full h-full bg-surface flex items-center justify-center p-6 text-primary group-hover:scale-105 transition-transform duration-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="opacity-30"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path><path d="M18 14h-8"></path><path d="M15 18h-5"></path><path d="M10 6h8v4h-8V6Z"></path></svg>
+                </div>
+              )}
+              <!-- Tag overlay in the corner -->
+              {post.data.tags.length > 0 && (
+                <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-primary text-xs font-medium px-3 py-1 rounded-full shadow-sm">
+                  {post.data.tags[0]}
+                </div>
+              )}
+            </a>
+            <div class="p-6 flex flex-col flex-grow">
+              <time datetime={post.data.date.toISOString()} class="text-xs font-mono text-muted mb-3 flex items-center gap-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                {formatDate(post.data.date)}
+              </time>
+              <h2 class="text-xl font-display font-medium text-text mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                <a href={`/blog/${post.id}`}>
+                  {post.data.title}
+                </a>
+              </h2>
+              <p class="text-muted text-sm leading-relaxed mb-6 line-clamp-3">
+                {post.data.excerpt}
+              </p>
+              
+              <div class="mt-auto pt-4 border-t border-primary/10">
+                <a href={`/blog/${post.id}`} class="text-sm font-medium text-primary hover:text-secondary inline-flex items-center gap-1 transition-colors">
+                  Leggi l'articolo <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.tag-btn');
+    const posts = document.querySelectorAll('.post-card');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Rimuovi classe active a tutti e mettila a quello cliccato
+        buttons.forEach(btn => {
+          btn.classList.remove('bg-primary', 'text-white', 'border-primary');
+          btn.classList.add('bg-surface', 'text-text', 'border-primary/10');
+        });
+        
+        button.classList.remove('bg-surface', 'text-text', 'border-primary/10');
+        button.classList.add('bg-primary', 'text-white', 'border-primary');
+
+        const selectedTag = button.getAttribute('data-tag');
+
+        posts.forEach(post => {
+          const postElement = post as HTMLElement;
+          if (selectedTag === 'all') {
+             postElement.style.display = 'flex';
+          } else {
+             const tagsRaw = postElement.getAttribute('data-tags');
+             if (tagsRaw) {
+               try {
+                 const t = JSON.parse(tagsRaw);
+                 if (t.includes(selectedTag)) {
+                   postElement.style.display = 'flex';
+                 } else {
+                   postElement.style.display = 'none';
+                 }
+               } catch(e) {}
+             }
+          }
+        });
+      });
+    });
+  });
+</script>
