@@ -1,8 +1,10 @@
 ---
+// Importazione dei componenti di base
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
+// Dati per la timeline del percorso professionale e formativo
 const timeline = [
   {
     year: "Feb 2026",
@@ -26,6 +28,7 @@ const timeline = [
   }
 ];
 
+// Lista delle aree di formazione continua (badge)
 const tags = [
   "Diagnosi differenziale Disturbi d'Ansia",
   "Teacher/Parent Training – Disturbo Oppositivo Provocatorio",
@@ -40,22 +43,22 @@ const tags = [
   
   <main class="flex-grow pt-28 pb-20">
     
-    <!-- Intro Header -->
+    <!-- Header della pagina "Chi sono" -->
     <section class="max-w-4xl mx-auto px-4 md:px-6 mb-16 md:mb-24 text-center">
       <h1 class="text-4xl md:text-5xl font-display font-medium text-text mb-6">Chi sono</h1>
       <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
     </section>
 
-    <!-- Bio Section -->
+    <!-- Bio Section: Foto e testo descrittivo dell'approccio clinico -->
     <section class="max-w-5xl mx-auto px-4 md:px-6 mb-24">
       <div class="flex flex-col md:flex-row gap-12 items-center">
-        <!-- Foto -->
+        <!-- Foto con overlay e bordi arrotondati -->
         <div class="w-full md:w-2/5 aspect-[3/4] rounded-2xl overflow-hidden shadow-xl border-4 border-surface relative">
           <img src="/images/elisa-hero.jpg" alt="Ritratto di Elisa Ardinghi" class="w-full h-full object-cover bg-secondary/20" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNDMDg0QjAiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==';" />
           <div class="absolute inset-0 bg-primary/5 mix-blend-multiply"></div>
         </div>
         
-        <!-- Testo Lungo -->
+        <!-- Descrizione dell'approccio terapeutico -->
         <div class="w-full md:w-3/5 prose prose-lg prose-p:text-muted prose-p:leading-relaxed max-w-none">
           <p class="text-xl md:text-2xl font-display text-text font-medium mb-6 leading-tight">
             "Sono orientata alla costruzione di una solida alleanza terapeutica e all'integrazione mente-corpo nel percorso clinico."
@@ -70,19 +73,21 @@ const tags = [
       </div>
     </section>
 
-    <!-- Formazione Timeline -->
+    <!-- Formazione Timeline: Sezione con sfondo surface per distinguere il percorso di studi -->
     <section class="bg-surface py-24 mb-24">
       <div class="max-w-4xl mx-auto px-4 md:px-6">
         <div class="text-center mb-16">
           <h2 class="text-3xl font-display font-medium text-text">Il mio percorso</h2>
         </div>
         
+        <!-- Implementazione della timeline verticale con bordo sinistro -->
         <div class="relative border-l-2 border-primary/20 ml-3 md:ml-6 space-y-12">
           {timeline.map(item => (
             <div class="relative pl-8 md:pl-10">
-              <!-- Endpoint dot -->
+              <!-- Punto (pallina) della timeline posizionato precisamente sul bordo -->
               <div class="absolute w-4 h-4 rounded-full bg-primary -left-[9px] top-1.5 ring-4 ring-surface"></div>
               
+              <!-- Badge dell'anno/periodo -->
               <span class="text-sm font-mono text-secondary font-medium tracking-wide bg-secondary/10 px-3 py-1 rounded-full mb-3 inline-block">
                 {item.year}
               </span>
@@ -94,7 +99,7 @@ const tags = [
       </div>
     </section>
 
-    <!-- Formazione Continua -->
+    <!-- Formazione Continua: Badge delle specializzazioni e corsi frequentati -->
     <section class="max-w-4xl mx-auto px-4 md:px-6 mb-24 text-center">
       <h2 class="text-3xl font-display font-medium text-text mb-10">Formazione continua</h2>
       <div class="flex flex-wrap justify-center gap-3 md:gap-4">
@@ -106,7 +111,7 @@ const tags = [
       </div>
     </section>
 
-    <!-- CTA Finale -->
+    <!-- CTA Finale: Invito all'azione identico a quello della Home per consistenza -->
     <section class="max-w-3xl mx-auto px-4 md:px-6 text-center">
       <div class="bg-primary/5 border border-primary/10 rounded-3xl p-10 md:p-14 shadow-sm">
         <h2 class="text-2xl md:text-3xl font-display font-medium text-text mb-4">Iniziamo un percorso insieme</h2>

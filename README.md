@@ -1,46 +1,62 @@
-# Astro Starter Kit: Basics
+# Sito Web Dott.ssa Elisa Ardinghi - Psicologa Clinica
 
-```sh
-npm create astro@latest -- --template basics
-```
+Questo progetto è un sito web professionale e moderno costruito con **Astro 6** e **Tailwind CSS v4**. È progettato per essere veloce, accessibile e facilmente gestibile tramite un'interfaccia di amministrazione semplificata.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Tecnologie Utilizzate
 
-## 🚀 Project Structure
+- **Framework**: [Astro](https://astro.build/) (v6) - Per performance elevate e SEO ottimizzato.
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) (v4) - Sistema di design CSS-first.
+- **CMS**: [Decap CMS](https://decapcms.org/) - Pannello di controllo per scrivere articoli del blog senza toccare il codice.
+- **Integrazioni**: 
+  - [Web3Forms](https://web3forms.com/) per i contatti via email.
+  - [Cal.com](https://cal.com/) per la prenotazione dei colloqui.
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📂 Struttura del Progetto
+
+Il progetto è organizzato in modo intuitivo:
 
 ```text
 /
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+├── public/              # File statici (immagini, favicon, admin del CMS)
+│   ├── admin/           # Pannello di controllo del CMS (config.yml e index.html)
+│   └── images/          # Tutte le immagini caricate sul sito
+├── src/
+│   ├── components/      # Pezzi riutilizzabili (Header, Footer, etc.)
+│   ├── content/         # Testi del Blog (file Markdown .md)
+│   ├── layouts/         # Struttura base delle pagine (HTML, Meta tag)
+│   ├── pages/           # Le singole pagine del sito (Home, Chi sono, Blog, Contatti)
+│   ├── styles/          # Stili globali e tema colori (global.css)
+│   └── content.config.ts # Configurazione dei dati del blog
+├── Caddyfile            # Configurazione del server sulla VPS
+├── astro.config.mjs     # Impostazioni principali del sito
+└── package.json         # Elenco dei comandi e delle dipendenze
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 📝 Gestione dei Contenuti (Blog)
 
-## 🧞 Commands
+Per aggiungere o modificare articoli, Elisa può accedere all'area riservata all'indirizzo:
+`https://elisaardinghi.it/admin/`
 
-All commands are run from the root of the project, from a terminal:
+I contenuti vengono salvati automaticamente come file Markdown nella cartella `src/content/blog/`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🛠 Comandi Utili
 
-## 👀 Want to learn more?
+Tutti i comandi vanno eseguiti nel terminale dalla cartella principale del progetto:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Comando | Azione |
+| :--- | :--- |
+| `npm install` | Installa tutte le dipendenze (da fare la prima volta). |
+| `npm run dev` | Avvia il sito in modalità sviluppo su `localhost:4321`. |
+| `npm run build` | Compila il sito per la produzione nella cartella `/dist/`. |
+| `npm run preview` | Visualizza in locale la versione finale compilata. |
+
+## 🌐 Deployment (Caricamento online)
+
+Il deploy è automatizzato tramite **GitHub Actions**. Quando viene fatto un "Push" sul ramo `main`, GitHub:
+1. Compila il progetto.
+2. Trasferisce i file via SSH sulla VPS Hetzner.
+
+Le guide dettagliate per il setup della VPS e dei Secret di GitHub si trovano nella cartella `docs/`.
+
+---
+*Progetto realizzato e documentato per Elisa Ardinghi.*

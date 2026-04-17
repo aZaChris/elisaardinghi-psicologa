@@ -1,22 +1,26 @@
-backend:
-  name: git-gateway
-  branch: main
+# Configurazione Decap CMS (precedentemente Netlify CMS)
+# Questo file definisce come l'interfaccia di amministrazione gestisce i contenuti del sito
 
-media_folder: "public/images"
-public_folder: "/images"
-logo_url: "/favicon.svg"
+backend:
+  name: git-gateway # Utilizza il gateway Git per l'autenticazione (solitamente via Netlify o simili)
+  branch: main      # Il ramo su cui verranno salvati i cambiamenti
+
+# Gestione dei file multimediali (immagini, etc.)
+media_folder: "public/images" # Cartella fisica dove salvare i nuovi upload
+public_folder: "/images"      # Percorso pubblico da cui verranno richiamati i file nel sito
+logo_url: "/favicon.svg"      # Logo personalizzato nell'interfaccia CMS
 
 collections:
   - name: "blog"
-    label: "Articoli"
-    folder: "src/content/blog"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    label: "Articoli"        # Etichetta visibile nel pannello di controllo
+    folder: "src/content/blog" # Cartella dei contenuti da gestire
+    create: true             # Permette la creazione di nuovi file
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Formato del nome del file generato
     fields:
       - { label: "Titolo", name: "title", widget: "string" }
       - { label: "Data", name: "date", widget: "datetime" }
-      - { label: "Estratto", name: "excerpt", widget: "text", hint: "Max 200 caratteri" }
+      - { label: "Estratto", name: "excerpt", widget: "text", hint: "Breve descrizione visibile nell'anteprima (Max 200 caratteri)" }
       - { label: "Immagine copertina", name: "coverImage", widget: "image", required: false }
-      - { label: "Tag", name: "tags", widget: "list", default: [] }
+      - { label: "Tag", name: "tags", widget: "list", default: [], hint: "Aggiungi uno o più tag per categorizzare l'articolo" }
       - { label: "Pubblicato (Visibile sul sito)", name: "published", widget: "boolean", default: true }
       - { label: "Contenuto", name: "body", widget: "markdown" }

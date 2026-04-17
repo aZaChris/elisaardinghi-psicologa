@@ -1,5 +1,11 @@
 {
+  // Estende la configurazione rigorosa consigliata dal team di Astro
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "include": [
+    ".astro/types.d.ts", // Include i tipi generati automaticamente da Astro (es. per il blog)
+    "**/*"               // Include tutti i file del progetto
+  ],
+  "exclude": [
+    "dist"               // Esclude la cartella dei file compilati per non rallentare l'editor
+  ]
 }

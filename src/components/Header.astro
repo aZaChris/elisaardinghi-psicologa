@@ -1,4 +1,5 @@
 ---
+// Definizione dei link di navigazione del sito
 const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Chi sono', href: '/chi-sono' },
@@ -8,13 +9,15 @@ const navLinks = [
 ];
 ---
 
+<!-- Header fisso con effetto sfocato (backdrop-blur) per un design premium -->
 <header class="fixed w-full top-0 z-50 bg-bg/90 backdrop-blur-md border-b border-surface">
   <div class="max-w-6xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+    <!-- Logo testuale in font Playfair Display -->
     <a href="/" class="text-2xl font-display font-medium text-primary hover:text-secondary transition-colors">
       Elisa Ardinghi
     </a>
 
-    <!-- Desktop Nav -->
+    <!-- Navigazione Desktop (nascosta su schermi piccoli) -->
     <nav class="hidden md:flex items-center gap-8">
       {navLinks.map((link) => (
         <a 
@@ -24,12 +27,13 @@ const navLinks = [
           {link.name}
         </a>
       ))}
+      <!-- CTA Primario per la prenotazione -->
       <a href="/#prenota" class="bg-primary text-white hover:bg-secondary px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-sm">
         Prenota
       </a>
     </nav>
 
-    <!-- Mobile Menu Button -->
+    <!-- Pulsante Menu Mobile (hamburger) -->
     <button id="mobile-menu-btn" class="md:hidden p-2 text-primary" aria-label="Menu">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
@@ -37,7 +41,7 @@ const navLinks = [
     </button>
   </div>
 
-  <!-- Mobile Nav -->
+  <!-- Menu Mobile a comparsa -->
   <div id="mobile-nav" class="hidden md:hidden absolute top-20 left-0 w-full bg-surface border-b border-primary/10 shadow-lg">
     <nav class="flex flex-col px-4 py-4 gap-4">
       {navLinks.map((link) => (
@@ -54,17 +58,22 @@ const navLinks = [
     </nav>
   </div>
 </header>
-<div class="h-20"></div> <!-- Spacer for fixed header -->
+
+<!-- Distanziatore per evitare che il contenuto finisca sotto l'header fisso -->
+<div class="h-20"></div>
 
 <script>
+  // Logica Vanilla JS per gestire l'apertura/chiusura del menu mobile
   const btn = document.getElementById('mobile-menu-btn');
   const nav = document.getElementById('mobile-nav');
   const links = document.querySelectorAll('.mobile-link');
   
+  // Toggle della classe 'hidden' al click sull'hamburger
   btn?.addEventListener('click', () => {
     nav?.classList.toggle('hidden');
   });
 
+  // Chiude il menu quando si clicca su un link (utile per le ancore nella stessa pagina)
   links.forEach(link => {
     link.addEventListener('click', () => {
       nav?.classList.add('hidden');

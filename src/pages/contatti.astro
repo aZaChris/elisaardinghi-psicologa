@@ -1,9 +1,10 @@
 ---
+// Importazione dei componenti necessari per la pagina Contatti
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-// Fallback in case env variable is missing during dev
+// Recupero della chiave pubblica Web3Forms dalle variabili d'ambiente (configurata su GitHub Secrets/Netlify/Vercel)
 const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
 ---
 
@@ -21,13 +22,15 @@ const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HE
       </div>
 
       <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
-        <!-- Form Section -->
+        <!-- Colonna Sinistra: Form di contatto Web3Forms -->
         <div class="w-full lg:w-3/5 bg-surface p-8 md:p-12 rounded-3xl border border-primary/10 shadow-sm">
           <h2 class="text-2xl font-display font-medium text-text mb-8">Scrivimi</h2>
           
           <form id="contact-form" class="space-y-6">
+            <!-- Campi nascosti richiesti da Web3Forms per il corretto funzionamento -->
             <input type="hidden" name="access_key" value={web3formsKey}>
             <input type="hidden" name="subject" value="Nuovo messaggio dal sito web - Elisa Ardinghi">
+            <!-- Protezione antispam (Honeypot) -->
             <input type="checkbox" name="botcheck" id="" style="display: none;">
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -51,6 +54,7 @@ const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HE
               <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-xl border border-primary/20 bg-bg text-text focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none"></textarea>
             </div>
 
+            <!-- Accettazione Privacy GDPR -->
             <div class="flex items-start gap-3">
               <input type="checkbox" id="privacy" name="privacy" required class="mt-1 w-4 h-4 rounded text-primary focus:ring-primary/50">
               <label for="privacy" class="text-sm text-muted">
@@ -61,16 +65,18 @@ const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HE
             <button type="submit" id="submit-btn" class="w-full bg-primary text-white hover:bg-secondary px-8 py-4 rounded-xl text-lg font-medium transition-all shadow-md mt-4">
               Invia messaggio
             </button>
+            <!-- Messaggio di feedback sull'invio (successo/errore) -->
             <p id="result-msg" class="text-center mt-4 hidden text-sm font-medium"></p>
           </form>
         </div>
 
-        <!-- Info Section -->
+        <!-- Colonna Destra: Informazioni di contatto e Mappa -->
         <div class="w-full lg:w-2/5 flex flex-col justify-between">
           <div>
             <h2 class="text-2xl font-display font-medium text-text mb-8">Recapiti diretti</h2>
             
             <ul class="space-y-8 mb-12">
+              <!-- Telefono -->
               <li class="flex items-start gap-4">
                 <div class="w-12 h-12 rounded-full bg-accent/20 text-primary flex items-center justify-center shrink-0">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -80,6 +86,7 @@ const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HE
                   <p class="text-muted text-lg">+39 348 715 1411</p>
                 </div>
               </li>
+              <!-- Email Standard -->
               <li class="flex items-start gap-4">
                 <div class="w-12 h-12 rounded-full bg-accent/20 text-primary flex items-center justify-center shrink-0">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -89,6 +96,7 @@ const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HE
                   <a href="mailto:elisaardinghi9@gmail.com" class="text-primary hover:text-secondary transition-colors text-lg break-all">elisaardinghi9@gmail.com</a>
                 </div>
               </li>
+              <!-- Sede dello studio -->
               <li class="flex items-start gap-4">
                 <div class="w-12 h-12 rounded-full bg-accent/20 text-primary flex items-center justify-center shrink-0">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
@@ -101,7 +109,7 @@ const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HE
             </ul>
           </div>
           
-          <!-- Mappa iframe (Cintolese, Monsummano Terme PT) -->
+          <!-- Mappa iframe (Posizionata su Cintolese PT) -->
           <div class="w-full bg-surface rounded-3xl overflow-hidden border border-primary/10 h-64 shadow-sm relative grayscale hover:grayscale-0 transition-all duration-700">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m3!1d11516.480282470716!2d10.83546731005886!3d43.853245452296726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a76f6b1e6ebaf%3A0xe5a3bb406c1ecf42!2s51015%20Cintolese%20PT!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" 
@@ -124,6 +132,7 @@ const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HE
 </Layout>
 
 <script>
+  // Logica lato client per l'invio asincrono del form a Web3Forms
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const resultMsg = document.getElementById('result-msg');
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
@@ -132,16 +141,19 @@ const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HE
     e.preventDefault();
     if (!form || !resultMsg || !submitBtn) return;
 
+    // Estrazione dei dati dal form e conversione in JSON
     const formData = new FormData(form);
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
+    // Feedback visivo dell'invio in corso
     resultMsg.innerHTML = "Invio in corso...";
     resultMsg.classList.remove('hidden', 'text-green-600', 'text-red-600');
     resultMsg.classList.add('text-muted');
     submitBtn.disabled = true;
     submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
 
+    // Chiamata all'API di Web3Forms
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: {
@@ -153,11 +165,13 @@ const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HE
     .then(async (response) => {
       let json = await response.json();
       if (response.status == 200) {
+        // Successo: svuota il form e comunica all'utente
         resultMsg.innerHTML = "Messaggio inviato con successo! Ti risponderò al più presto.";
         resultMsg.classList.remove('text-muted', 'text-red-600');
         resultMsg.classList.add('text-green-600');
         form.reset();
       } else {
+        // Errore restituito dall'API
         console.log(response);
         resultMsg.innerHTML = json.message || "Si è verificato un errore. Riprova più tardi.";
         resultMsg.classList.remove('text-muted', 'text-green-600');
@@ -165,14 +179,17 @@ const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HE
       }
     })
     .catch(error => {
+      // Errore di connessione o di rete
       console.log(error);
       resultMsg.innerHTML = "Errore di connessione. Controlla la tua rete e riprova.";
       resultMsg.classList.remove('text-muted', 'text-green-600');
       resultMsg.classList.add('text-red-600');
     })
     .finally(() => {
+      // Ripristina lo stato del pulsante
       submitBtn.disabled = false;
       submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+      // Nasconde il messaggio di feedback dopo 5 secondi
       setTimeout(() => {
         resultMsg.classList.add('hidden');
       }, 5000);

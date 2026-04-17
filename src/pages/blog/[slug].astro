@@ -1,21 +1,26 @@
 ---
+// Importazione dei metodi per gestire le collezioni di contenuti e il rendering Markdown
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
-// 1. Generate a new path for every collection entry
+// 1. Funzione getStaticPaths: Necessaria per siti statici per dire ad Astro quali sono tutti gli URL validi
+// Genera un percorso per ogni voce presente nella collezione "blog"
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
   return blogEntries.map(entry => ({
+    // L'ID del file verrà usato come slug nell'URL (es. blog/titolo-articolo)
     params: { slug: entry.id }, props: { entry },
   }));
 }
 
-// 2. For your template, you can get the entry directly from the prop
+// 2. Recupero dell'ingresso (entry) dalle props passate da getStaticPaths
 const { entry } = Astro.props;
+// Trasformazione del contenuto Markdown in un componente React-like utilizzabile (<Content />)
 const { Content } = await render(entry);
 
+// Helper per la data in formato leggibile italiano
 const formatDate = (date: Date) => {
   return date.toLocaleDateString('it-IT', { year: 'numeric', month: 'long', day: 'numeric' });
 };
@@ -27,8 +32,9 @@ const formatDate = (date: Date) => {
   <main class="flex-grow pt-28 pb-20">
     <article class="max-w-3xl mx-auto px-4 md:px-6">
       
-      <!-- Intestazione post -->
+      <!-- Sezione Header dell'Articolo: Titolo, data e immagine di copertina -->
       <header class="mb-10 lg:mb-14 text-center">
+        <!-- Badge con la data di pubblicazione -->
         <time datetime={entry.data.date.toISOString()} class="text-sm font-mono text-secondary font-medium bg-secondary/10 px-3 py-1.5 rounded-full mb-6 inline-flex items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
           {formatDate(entry.data.date)}
@@ -38,6 +44,7 @@ const formatDate = (date: Date) => {
           {entry.data.title}
         </h1>
         
+        <!-- Lista dei Tag associati all'articolo -->
         <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
           {entry.data.tags.map((tag: string) => (
             <span class="text-xs font-medium text-primary bg-surface px-2.5 py-1 rounded-md border border-primary/10">
@@ -46,6 +53,7 @@ const formatDate = (date: Date) => {
           ))}
         </div>
         
+        <!-- Immagine di copertina (visualizzata solo se presente nei metadati dell'articolo) -->
         {entry.data.coverImage && (
           <div class="w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-lg border border-primary/5 mt-8 relative">
             <img 
@@ -57,7 +65,8 @@ const formatDate = (date: Date) => {
         )}
       </header>
 
-      <!-- Contenuto -->
+      <!-- Corpo del Post: Il contenuto viene iniettato qui tramite <Content /> -->
+      <!-- Utilizziamo le classi 'prose' di Tailwind Typography per formattare automaticamente il Markdown -->
       <div class="prose prose-lg md:prose-xl prose-p:text-muted prose-headings:font-display prose-headings:text-text prose-a:text-primary hover:prose-a:text-secondary max-w-none mx-auto
                   prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
                   prose-h3:text-xl md:prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
@@ -65,7 +74,7 @@ const formatDate = (date: Date) => {
         <Content />
       </div>
 
-      <!-- Condivisione & Back -->
+      <!-- Footer dell'Articolo: Navigazione a ritroso e link di condivisione social -->
       <footer class="mt-16 pt-8 border-t border-primary/10">
         <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
            <a href="/blog" class="inline-flex items-center gap-2 text-primary hover:text-secondary font-medium transition-colors">
@@ -73,7 +82,7 @@ const formatDate = (date: Date) => {
             Torna agli articoli
            </a>
            
-           <!-- Dummy share buttons for aesthetics -->
+           <!-- Pulsanti di condivisione dimostrativi -->
            <div class="flex items-center gap-3">
              <span class="text-sm font-medium text-muted">Condividi:</span>
              <button class="w-10 h-10 rounded-full bg-surface text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors" aria-label="Condividi su Facebook">

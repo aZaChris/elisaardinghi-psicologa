@@ -1,11 +1,14 @@
 ---
+// Ottieni l'anno corrente per il copyright
 const year = new Date().getFullYear();
 ---
 
+<!-- Footer con sfondo chiaro (surface) e bordo superiore leggero -->
 <footer class="bg-surface border-t border-primary/10 pt-16 pb-8 mt-auto">
   <div class="max-w-6xl mx-auto px-4 md:px-6">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-      <!-- Dettagli -->
+      
+      <!-- Colonna 1: Dettagli Professionale e Social -->
       <div>
         <h3 class="text-xl font-display font-medium text-primary mb-4">Elisa Ardinghi</h3>
         <p class="text-muted mb-6 leading-relaxed">
@@ -13,6 +16,7 @@ const year = new Date().getFullYear();
           Iscritta all'Albo degli Psicologi della Toscana n° 11853.
         </p>
         <div class="flex space-x-4">
+          <!-- Icona Instagram con link al profilo -->
           <a href="https://www.instagram.com/elisaardinghi.psy/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-secondary transition-colors" aria-label="Instagram">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -23,7 +27,7 @@ const year = new Date().getFullYear();
         </div>
       </div>
 
-      <!-- Link Rapidi -->
+      <!-- Colonna 2: Link Rapidi di Navigazione -->
       <div>
         <h4 class="text-lg font-display font-medium text-text mb-4">Navigazione</h4>
         <ul class="space-y-3">
@@ -34,22 +38,26 @@ const year = new Date().getFullYear();
         </ul>
       </div>
 
-      <!-- Contatti Recapiti -->
+      <!-- Colonna 3: Recapiti e Info di Contatto -->
       <div>
         <h4 class="text-lg font-display font-medium text-text mb-4">Contatti</h4>
         <ul class="space-y-3">
+          <!-- Telefono -->
           <li class="flex items-start gap-3 text-muted">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5 text-secondary"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
             <span>+39 348 715 1411</span>
           </li>
+          <!-- Email Standard -->
           <li class="flex items-start gap-3 text-muted">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5 text-secondary"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
             <a href="mailto:elisaardinghi9@gmail.com" class="hover:text-primary transition-colors">elisaardinghi9@gmail.com</a>
           </li>
+          <!-- PEC -->
           <li class="flex items-start gap-3 text-muted">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5 text-secondary"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
             <a href="mailto:elisa.ardinghi@psypec.it" class="hover:text-primary transition-colors">elisa.ardinghi@psypec.it</a>
           </li>
+          <!-- Sede/Disponibilità -->
           <li class="flex items-start gap-3 text-muted">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5 text-secondary"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
             <span>Cintolese (PT) & Online</span>
@@ -58,11 +66,11 @@ const year = new Date().getFullYear();
       </div>
     </div>
 
-    <!-- Legal -->
+    <!-- Sezione Finale: Copyright e Privacy -->
     <div class="pt-8 border-t border-primary/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted">
       <p>&copy; {year} Elisa Ardinghi. Tutti i diritti riservati.</p>
       <p class="text-center md:text-right">
-        Questo sito non raccoglie cookie di profilazione.
+        Nota: Questo sito non raccoglie cookie di profilazione.
       </p>
     </div>
   </div>

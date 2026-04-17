@@ -1,35 +1,46 @@
+# Workflow di GitHub Actions per il caricamento automatico (Deploy) su VPS Hetzner
 name: Deploy to Hetzner
 
 on:
   push:
+    # Si attiva automaticamente ogni volta che viene fatto un push sul ramo 'main'
     branches: [main]
 
 jobs:
   build-and-deploy:
+    # Utilizza un'istanza Linux aggiornata per eseguire i comandi
     runs-on: ubuntu-latest
     steps:
+      # 1. Scarica il codice del repository
       - uses: actions/checkout@v4
       
+      # 2. Configura Node.js versione 20 (necessaria per Astro 6)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          cache: 'npm' # Velocizza le build successive riutilizzando i pacchetti già scaricati
           
+      # 3. Installa le dipendenze del progetto in modo pulito
       - name: Install dependencies
         run: npm ci
         
+      # 4. Compila il sito (genera la cartella /dist)
       - name: Build project
         env:
+          # Inserisce la chiave Web3Forms dai "Secrets" di GitHub durante la compilazione
           PUBLIC_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
         run: npm run build
         
+      # 5. Trasferisce i file compilati sulla VPS tramite SSH e rsync
       - name: Deploy via rsync
         uses: easingthemes/ssh-deploy@v5
         with:
+          # Chiave privata SSH salvata nei Secrets di GitHub per l'accesso sicuro
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+          # Argomenti rsync: a=archive, v=verbose, z=compress, --delete=rimuove file vecchi non più presenti
           ARGS: "-avz --delete"
           SOURCE: "dist/"
-          REMOTE_HOST: ${{ secrets.VPS_HOST }}
-          REMOTE_USER: deploy
-          TARGET: /var/www/elisaardinghi/
+          REMOTE_HOST: ${{ secrets.VPS_HOST }} # IP della VPS salvato nei Secrets
+          REMOTE_USER: deploy                  # Utente creato sulla VPS per il deploy
+          TARGET: /var/www/elisaardinghi/      # Cartella di destinazione sulla VPS

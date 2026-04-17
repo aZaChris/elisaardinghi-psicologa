@@ -1,10 +1,10 @@
 ---
-title: "Cosa significa essere caregiver? Il peso invisibile di chi si prende cura"
-date: 2026-04-16T12:00:00Z
-excerpt: "Un'analisi sul ruolo del caregiver familiare, spesso sottovalutato, e sulle conseguenze psicologiche del prendersi cura costantemente di un malato."
-coverImage: "/images/elisa-hero.jpg"
-tags: ["Caregiver", "Alzheimer", "Psicologia Familiare"]
-published: true
+title: "Cosa significa essere caregiver? Il peso invisibile di chi si prende cura" # Titolo dell'articolo che apparirà sul sito
+date: 2026-04-16T12:00:00Z                                                    # Data di pubblicazione (formato ISO)
+excerpt: "Un'analisi sul ruolo del caregiver familiare, spesso sottevalutato, e sulle conseguenze psicologiche del prendersi cura costantemente di un malato." # Breve riassunto per l'anteprima
+coverImage: "/images/elisa-hero.jpg"                                           # Immagine di copertina (opzionale, punta a public/images/)
+tags: ["Caregiver", "Alzheimer", "Psicologia Familiare"]                      # Lista di tag per filtrare gli articoli
+published: true                                                                # Se impostato a false, l'articolo non sarà visibile sul sito
 ---
 
 Il termine "caregiver" indica colui che si prende cura. Nella maggior parte dei casi, parliamo di **caregiver familiari**: figli, coniugi o parenti che assistono quotidianamente una persona affetta da malattia cronica o invalidante, come l'Alzheimer o altre forme di demenza.

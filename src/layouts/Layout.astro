@@ -1,22 +1,26 @@
 ---
+// Importa lo stile globale (Tailwind v4 e configurazioni tema)
 import '../styles/global.css';
 
+// Definizione delle proprietà accettate dal layout
 interface Props {
 	title?: string;
 	description?: string;
 	image?: string;
 }
 
+// Estrazione delle props con valori di default per la SEO
 const { 
 	title = "Elisa Ardinghi", 
 	description = "Supporto psicologico per caregiver, famiglie e bambini. In studio a Cintolese (PT) e online.", 
 	image = "/og-default.jpg" 
 } = Astro.props;
 
+// Gestione dinamica del titolo della pagina
 const siteName = "Elisa Ardinghi - Psicologa";
 const displayTitle = title === "Elisa Ardinghi" ? siteName : `${title} | ${siteName}`;
 
-// Usa Astro.url se Astro.site non è configurato
+// Calcolo dell'URL assoluto per l'immagine Open Graph (necessario per i social)
 const defaultSite = Astro.site || Astro.url;
 const ogImage = new URL(image, defaultSite);
 ---
@@ -28,22 +32,23 @@ const ogImage = new URL(image, defaultSite);
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		
-		<!-- SEO -->
+		<!-- Meta tag SEO standard -->
 		<title>{displayTitle}</title>
 		<meta name="description" content={description} />
 		
-		<!-- Open Graph -->
+		<!-- Meta tag Open Graph (per condivisione su Facebook, LinkedIn, etc.) -->
 		<meta property="og:title" content={displayTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<meta property="og:image" content={ogImage} />
 		
-		<!-- Google Fonts preconnect & stylesheet -->
+		<!-- Preconnessione e caricamento Google Fonts per ottimizzare le performance (Lighthouse > 90) -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 	</head>
 	<body class="bg-bg text-text font-sans antialiased min-h-screen flex flex-col">
+		<!-- Il tag <slot /> è dove verrà inserito il contenuto specifico di ogni pagina -->
 		<slot />
 	</body>
 </html>

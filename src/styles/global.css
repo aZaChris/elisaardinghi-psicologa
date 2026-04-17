@@ -1,19 +1,24 @@
+/* Importazione base di Tailwind CSS v4 */
 @import "tailwindcss";
 
+/* Definizione del tema personalizzato utilizzando la nuova sintassi CSS-first di Tailwind v4 */
 @theme {
-  --color-primary: #8B2252;
-  --color-secondary: #C084B0;
-  --color-bg: #FAF7FB;
-  --color-surface: #F3EEF5;
-  --color-text: #1E1420;
-  --color-muted: #6B5C72;
-  --color-accent: #D4A0C8;
+  /* Palette Colori (Ispirata al CV: lilla + bordeaux) */
+  --color-primary: #8B2252;   /* Bordeaux/Rosa scuro - CTA e accenti forti */
+  --color-secondary: #C084B0; /* Lilla medio - Hover e dettagli */
+  --color-bg: #FAF7FB;        /* Lilla quasi bianco - Sfondo pagina */
+  --color-surface: #F3EEF5;   /* Lilla chiarissimo - Card e sezioni alternate */
+  --color-text: #1E1420;      /* Quasi nero caldo - Testo principale */
+  --color-muted: #6B5C72;     /* Grigio viola - Testi secondari */
+  --color-accent: #D4A0C8;    /* Lilla chiaro - Tag e piccoli accenti */
   
-  --font-display: "Playfair Display", serif;
-  --font-sans: "DM Sans", sans-serif;
-  --font-mono: "DM Mono", monospace;
+  /* Tipografia personalizzata */
+  --font-display: "Playfair Display", serif; /* Per titoli ed elementi eleganti */
+  --font-sans: "DM Sans", sans-serif;         /* Per il corpo del testo, caldo e moderno */
+  --font-mono: "DM Mono", monospace;       /* Per numeri albo e date */
 }
 
+/* Stili di base applicati globalmente */
 @layer base {
   body {
     background-color: var(--color-bg);
@@ -23,6 +28,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
+  /* Applica il font Playfair Display a tutti i titoli */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     color: var(--color-text);
