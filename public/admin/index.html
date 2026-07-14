@@ -4,6 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
     <title>Gestione Contenuti | Elisa Ardinghi</title>
 
     <!-- Senza slash finale (es. /admin invece di /admin/), Vercel serve questa
@@ -11,14 +12,15 @@
          risolverebbero dalla radice del sito, dando 404. Questo tag fissa
          la base indipendentemente da come l'URL è stato digitato. -->
     <base href="/admin/" />
+  </head>
+  <body>
+    <!-- Gli script vanno DENTRO body (non in head): Decap CMS si aggancia a
+         document.body appena parte, e in head il body non esiste ancora
+         (causa il "Cannot read properties of null (reading 'appendChild')"). -->
 
     <!-- Script per l'autenticazione tramite Netlify Identity -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    
-    <!-- Libreria principale di Decap CMS (l'interfaccia vera e propria) -->
-    <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
-  </head>
-  <body>
+
     <script>
       // Il sito pubblico è su Vercel, ma Netlify Identity gira su un progetto
       // Netlify separato creato solo per questo (vedi docs/cms-identity-setup.md).
@@ -40,5 +42,8 @@
         });
       }
     </script>
+
+    <!-- Libreria principale di Decap CMS (l'interfaccia vera e propria) -->
+    <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
   </body>
 </html>
