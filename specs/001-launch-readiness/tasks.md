@@ -72,6 +72,7 @@
 
 - [x] T011 Eseguire `npm run build` e verificare che non emetta errori/warning (SC-004) — 6 pagine generate, nessun errore
 - [ ] T012 Eseguire manualmente gli scenari di `quickstart.md` §3 e §4 dopo che il progetto Netlify Identity è stato creato (dipende da azione manuale esterna, non bloccante per il resto del codice)
+- [x] T012b Fix emerso durante T012: `/admin` (senza slash finale) veniva servito da Vercel senza redirect a `/admin/`, causando 404 su `config.yml` (fetch relativo risolto dalla radice del sito). Aggiunto `<base href="/admin/">` in `public/admin/index.html`.
 
 ---
 
