@@ -1,0 +1,16 @@
+---
+// Blok "formazione_tags": elenco di badge formazione continua, riordinabile/estendibile
+import { storyblokEditable } from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+
+const { blok } = Astro.props;
+---
+
+<section {...storyblokEditable(blok)} class="max-w-4xl mx-auto px-4 md:px-6 mb-24 text-center">
+  <h2 class="text-3xl font-display font-medium text-text mb-10">{blok.title}</h2>
+  <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+    {blok.tags?.map((tag) => (
+      <StoryblokComponent blok={tag} />
+    ))}
+  </div>
+</section>

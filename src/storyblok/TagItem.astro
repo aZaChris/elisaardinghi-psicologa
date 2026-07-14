@@ -1,0 +1,10 @@
+---
+// Blok "tag_item": singolo tag di formazione continua
+import { storyblokEditable } from '@storyblok/astro';
+
+const { blok } = Astro.props;
+---
+
+<span {...storyblokEditable(blok)} class="px-5 py-3 bg-bg border border-primary/20 text-text rounded-2xl shadow-sm text-sm font-medium hover:border-primary/50 transition-colors">
+  {blok.text}
+</span>

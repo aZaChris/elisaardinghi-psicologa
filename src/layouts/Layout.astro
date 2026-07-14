@@ -50,5 +50,23 @@ const ogImage = new URL(image, defaultSite);
 	<body class="bg-bg text-text font-sans antialiased min-h-screen flex flex-col">
 		<!-- Il tag <slot /> è dove verrà inserito il contenuto specifico di ogni pagina -->
 		<slot />
+
+		<!-- Storyblok Visual Editor Bridge: caricato SOLO quando la pagina è
+		     aperta dentro l'iframe dell'editor Storyblok (parametro _storyblok
+		     nell'URL). Zero impatto per i visitatori reali del sito. Abilita
+		     il click diretto sugli elementi editabili nell'anteprima e
+		     ricarica la pagina quando Elisa pubblica una modifica. -->
+		<script>
+			if (new URLSearchParams(window.location.search).has('_storyblok')) {
+				const script = document.createElement('script');
+				script.src = 'https://app.storyblok.com/f/storyblok-v2-latest.js';
+				script.onload = () => {
+					// @ts-ignore - global iniettata dallo script Storyblok
+					const bridge = new window.StoryblokBridge();
+					bridge.on(['input', 'published', 'change'], () => window.location.reload());
+				};
+				document.head.appendChild(script);
+			}
+		</script>
 	</body>
 </html>

@@ -8,12 +8,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "vercel-build": "astro build && rm -rf dist/admin",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
+    "@storyblok/astro": "^10.2.0",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.6",
     "tailwindcss": "^4.2.2"

@@ -1,0 +1,17 @@
+---
+// Blok "bio_teaser": breve introduzione alla dottoressa in Home, con link a Chi Sono
+import { storyblokEditable } from '@storyblok/astro';
+
+const { blok } = Astro.props;
+---
+
+<section {...storyblokEditable(blok)} class="py-24 max-w-4xl mx-auto px-4 md:px-6 text-center">
+  <h2 class="text-3xl font-display font-medium text-text mb-8">{blok.title}</h2>
+  <p class="text-lg text-muted mb-8 italic leading-relaxed">
+    "{blok.quote}"
+  </p>
+  <a href="/chi-sono" class="inline-flex items-center gap-2 text-primary font-medium hover:text-secondary transition-colors group text-lg">
+    {blok.link_text}
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+  </a>
+</section>

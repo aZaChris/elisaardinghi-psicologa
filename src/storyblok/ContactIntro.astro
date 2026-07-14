@@ -1,0 +1,13 @@
+---
+// Blok "contact_intro": titolo e testo introduttivo della pagina Contatti
+import { storyblokEditable } from '@storyblok/astro';
+
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)} class="text-center mb-16">
+  <h1 class="text-4xl md:text-5xl font-display font-medium text-text mb-4">{blok.title}</h1>
+  <p class="text-lg text-muted max-w-2xl mx-auto">
+    {blok.description}
+  </p>
+</div>

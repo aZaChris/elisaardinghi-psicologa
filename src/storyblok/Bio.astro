@@ -1,0 +1,26 @@
+---
+// Blok "bio": citazione + paragrafi della bio estesa in Chi Sono.
+// I paragrafi sono un unico campo testo, separati da riga vuota.
+import { storyblokEditable } from '@storyblok/astro';
+
+const { blok } = Astro.props;
+const paragraphs = (blok.paragraphs || '').split(/\n\s*\n/).filter(Boolean);
+---
+
+<section {...storyblokEditable(blok)} class="max-w-5xl mx-auto px-4 md:px-6 mb-24">
+  <div class="flex flex-col md:flex-row gap-12 items-center">
+    <!-- Foto con overlay e bordi arrotondati -->
+    <div class="w-full md:w-2/5 aspect-[3/4] rounded-2xl overflow-hidden shadow-xl border-4 border-surface relative">
+      <img src="/images/elisa-hero.jpg" alt="Ritratto di Elisa Ardinghi" class="w-full h-full object-cover bg-secondary/20" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNDMDg0QjAiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==';" />
+      <div class="absolute inset-0 bg-primary/5 mix-blend-multiply"></div>
+    </div>
+
+    <!-- Descrizione dell'approccio terapeutico -->
+    <div class="w-full md:w-3/5 prose prose-lg prose-p:text-muted prose-p:leading-relaxed max-w-none">
+      <p class="text-xl md:text-2xl font-display text-text font-medium mb-6 leading-tight">
+        "{blok.quote}"
+      </p>
+      {paragraphs.map((p) => <p>{p}</p>)}
+    </div>
+  </div>
+</section>

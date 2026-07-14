@@ -1,0 +1,18 @@
+---
+// Blok "timeline_entry": singola voce della timeline del percorso professionale
+import { storyblokEditable } from '@storyblok/astro';
+
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)} class="relative pl-8 md:pl-10">
+  <!-- Punto (pallina) della timeline posizionato precisamente sul bordo -->
+  <div class="absolute w-4 h-4 rounded-full bg-primary -left-[9px] top-1.5 ring-4 ring-surface"></div>
+
+  <!-- Badge dell'anno/periodo -->
+  <span class="text-sm font-mono text-secondary font-medium tracking-wide bg-secondary/10 px-3 py-1 rounded-full mb-3 inline-block">
+    {blok.year}
+  </span>
+  <h3 class="text-xl font-display font-medium text-text mb-2">{blok.title}</h3>
+  <p class="text-muted leading-relaxed">{blok.description}</p>
+</div>

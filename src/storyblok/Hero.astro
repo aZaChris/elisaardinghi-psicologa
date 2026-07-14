@@ -1,0 +1,46 @@
+---
+// Blok "hero": sezione iniziale della Home, testi ed CTA gestiti da Storyblok
+import { storyblokEditable } from '@storyblok/astro';
+
+const { blok } = Astro.props;
+const imageUrl = blok.image?.filename || '/images/elisa-hero.jpg';
+---
+
+<section {...storyblokEditable(blok)} class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex flex-col justify-center min-h-[90vh]">
+  <!-- Pattern di sfondo a puntini (accento lilla) con opacità ridotta -->
+  <div class="absolute inset-0 z-0 opacity-[0.08]" style="background-image: radial-gradient(var(--color-accent) 2px, transparent 2px); background-size: 32px 32px;"></div>
+
+  <div class="max-w-6xl mx-auto px-4 md:px-6 relative z-10 w-full flex-grow flex items-center">
+    <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20 w-full">
+
+      <!-- Contenuto testuale dell'Hero -->
+      <div class="flex-1 text-center md:text-left">
+         <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-text leading-tight mb-6">
+           {blok.title} <br/><span class="text-primary italic">{blok.title_highlight}</span>
+         </h1>
+         <p class="text-lg md:text-xl text-muted mb-8 max-w-xl mx-auto md:mx-0 leading-relaxed">
+           {blok.subtitle}
+         </p>
+         <!-- Pulsanti di azione (CTA) -->
+         <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+           <a href="#prenota" class="w-full sm:w-auto bg-primary text-white hover:bg-secondary px-8 py-4 rounded-xl text-lg font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+             {blok.cta_primary_text}
+           </a>
+           <a href="/chi-sono" class="w-full sm:w-auto bg-surface text-primary border border-primary/20 hover:border-primary/50 px-8 py-4 rounded-xl text-lg font-medium transition-all">
+             {blok.cta_secondary_text}
+           </a>
+         </div>
+      </div>
+
+      <!-- Immagine Hero con bordi arrotondati asimmetrici per un tocco moderno -->
+      <div class="flex-1 w-full max-w-md md:max-w-none relative">
+        <div class="aspect-[4/5] rounded-tl-[80px] rounded-br-[80px] rounded-tr-2xl rounded-bl-2xl overflow-hidden shadow-2xl relative">
+          <img src={imageUrl} alt="Elisa Ardinghi" class="w-full h-full object-cover bg-secondary/20" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNDMDg0QjAiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==';" />
+          <div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-tl-[80px] rounded-br-[80px] rounded-tr-2xl rounded-bl-2xl"></div>
+        </div>
+        <!-- Ombra sfumata esterna all'immagine -->
+        <div class="absolute -bottom-6 -left-6 w-48 h-48 bg-secondary/30 rounded-full blur-3xl -z-10"></div>
+      </div>
+    </div>
+  </div>
+</section>

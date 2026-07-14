@@ -1,0 +1,25 @@
+---
+// Blok "service_card": card di una singola area di intervento.
+// L'icona è un select a opzioni fisse (non HTML libero da CMS): sicurezza
+// e coerenza visiva, Elisa sceglie tra le icone esistenti nel codice.
+import { storyblokEditable } from '@storyblok/astro';
+
+const { blok } = Astro.props;
+
+const icons = {
+  caregiver: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>',
+  bambini: '<path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"></path><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path><path d="M12 2v2"></path><path d="M12 22v-2"></path><path d="m17 20.66-1-1.73"></path><path d="M11 10.27 7 3.34"></path><path d="m20.66 17-1.73-1"></path><path d="m3.34 7 1.73 1"></path><path d="M14 12h8"></path><path d="M2 12h2"></path><path d="m20.66 7-1.73 1"></path><path d="m3.34 17 1.73-1"></path><path d="m17 3.34-1 1.73"></path><path d="m11 13.73-4 6.93"></path>',
+  ansia: '<path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>',
+  consulenza: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>',
+};
+
+const iconPath = icons[blok.icon] || icons.consulenza;
+---
+
+<div {...storyblokEditable(blok)} class="bg-bg p-8 rounded-2xl shadow-sm border border-primary/10 hover:shadow-md hover:border-secondary/40 transition-all group">
+  <div class="w-14 h-14 bg-accent/20 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={iconPath}></svg>
+  </div>
+  <h3 class="text-xl font-display font-medium text-text mb-3">{blok.title}</h3>
+  <p class="text-muted leading-relaxed text-sm">{blok.description}</p>
+</div>

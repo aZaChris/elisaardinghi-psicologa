@@ -1,0 +1,18 @@
+---
+// Blok "cta_final": invito all'azione finale (Chi Sono)
+import { storyblokEditable } from '@storyblok/astro';
+
+const { blok } = Astro.props;
+---
+
+<section {...storyblokEditable(blok)} class="max-w-3xl mx-auto px-4 md:px-6 text-center">
+  <div class="bg-primary/5 border border-primary/10 rounded-3xl p-10 md:p-14 shadow-sm">
+    <h2 class="text-2xl md:text-3xl font-display font-medium text-text mb-4">{blok.title}</h2>
+    <p class="text-muted mb-8 text-lg">
+      {blok.description}
+    </p>
+    <a href="/#prenota" class="inline-block bg-primary text-white hover:bg-secondary px-8 py-4 rounded-xl text-lg font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+      {blok.button_text}
+    </a>
+  </div>
+</section>

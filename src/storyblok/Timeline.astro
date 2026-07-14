@@ -1,0 +1,22 @@
+---
+// Blok "timeline": contenitore delle voci timeline, riordinabili/estendibili da Storyblok
+import { storyblokEditable } from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+
+const { blok } = Astro.props;
+---
+
+<section {...storyblokEditable(blok)} class="bg-surface py-24 mb-24">
+  <div class="max-w-4xl mx-auto px-4 md:px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-display font-medium text-text">{blok.title}</h2>
+    </div>
+
+    <!-- Implementazione della timeline verticale con bordo sinistro -->
+    <div class="relative border-l-2 border-primary/20 ml-3 md:ml-6 space-y-12">
+      {blok.entries?.map((entry) => (
+        <StoryblokComponent blok={entry} />
+      ))}
+    </div>
+  </div>
+</section>
