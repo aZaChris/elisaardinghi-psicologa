@@ -1,14 +1,18 @@
 <!--
 Sync Impact Report
-- Version change: (none) → 1.0.0
-- Modified principles: n/a (initial ratification)
-- Added sections: Core Principles (5), Technical Constraints, Development Workflow, Governance
-- Removed sections: template placeholders
+- Version change: 1.0.0 → 2.0.0
+- Modified principles: II. Elisa Deve Poter Lavorare Da Sola (Decap CMS →
+  editor visuale Storyblok, blocchi riordinabili)
+- Added sections: none
+- Removed sections: none
+- Technical Constraints: CMS auth (git-gateway/Netlify Identity) sostituito
+  con Storyblok + webhook di deploy; Decap CMS dismesso
 - Templates requiring updates:
-  - .specify/templates/plan-template.md ✅ compatible (generic Constitution Check gate, no changes needed)
+  - .specify/templates/plan-template.md ✅ compatible
   - .specify/templates/spec-template.md ✅ compatible
   - .specify/templates/tasks-template.md ✅ compatible
-- Follow-up TODOs: none
+- Follow-up TODOs: rimuovere public/admin/, config Decap, vercel.json
+  redirect /admin, docs/cms-identity-setup.md (feature 002)
 -->
 
 # Sito Elisa Ardinghi Psicologa Constitution
@@ -26,10 +30,13 @@ installata) non basta.
 
 ### II. Elisa Deve Poter Lavorare Da Sola
 La dottoressa non scrive codice. Ogni contenuto che cambia con una certa
-frequenza (articoli del blog, testi, immagini) DEVE essere modificabile da
-`/admin/` (Decap CMS) senza intervento di uno sviluppatore. Le modifiche che
-richiedono per forza codice (nuove pagine, nuove sezioni strutturali, nuove
-integrazioni) restano lavoro da sviluppatore.
+frequenza (testi di Home/Chi Sono/Contatti, articoli del blog, immagini,
+ordine delle sezioni ripetute) DEVE essere modificabile visivamente da
+Elisa tramite l'editor visuale di Storyblok, senza intervento di uno
+sviluppatore. Elisa può riordinare, duplicare o rimuovere istanze dei
+blocchi di contenuto già esistenti (es. un'altra card servizio, una voce
+timeline in più); creare un nuovo TIPO di blocco mai esistito, o
+modificare struttura/stile del sito, resta lavoro da sviluppatore.
 
 ### III. Privacy e Trust by Design
 Sito di ambito sanitario/psicologico: tono, contenuti e struttura dati DEVONO
@@ -55,15 +62,15 @@ necessità concreta e documentata.
 
 ## Technical Constraints
 
-- Stack: Astro 6 (output statico) + Tailwind CSS v4 + Decap CMS.
-- Hosting: Vercel, build automatica dal branch `master`.
-- CMS auth: backend `git-gateway`, Identity fornita da un progetto Netlify
-  dedicato esclusivamente all'autenticazione di `/admin/` (il sito pubblico
-  resta su Vercel).
+- Stack: Astro 6 (output statico) + Tailwind CSS v4 + Storyblok (CMS
+  headless con editor visuale).
+- Hosting: Vercel, build automatica dal branch `master`, ritriggerata da
+  un webhook di Storyblok quando Elisa pubblica una modifica.
+- Contenuti (Home, Chi Sono, Contatti, articoli blog): gestiti su
+  Storyblok come "storie" composte da blocchi (bloks) tipizzati, letti da
+  Astro via `@storyblok/astro` in fase di build (versione "published").
 - Integrazioni terze: Web3Forms (contatti), Cal.com (prenotazioni). Vanno
   usate le chiavi/ID reali in produzione, mai placeholder.
-- Contenuti blog: Markdown in `src/content/blog/`, gestiti via Content
-  Collections di Astro.
 
 ## Development Workflow
 
@@ -82,4 +89,4 @@ versione secondo semver (MAJOR = rimozione/ridefinizione di un principio,
 MINOR = principio aggiunto, PATCH = chiarimenti). Ogni piano (`/speckit-plan`)
 deve essere verificato contro questi principi prima dell'implementazione.
 
-**Version**: 1.0.0 | **Ratified**: 2026-07-14 | **Last Amended**: 2026-07-14
+**Version**: 2.0.0 | **Ratified**: 2026-07-14 | **Last Amended**: 2026-07-14
