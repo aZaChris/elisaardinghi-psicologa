@@ -27,7 +27,7 @@ Il progetto è organizzato in modo intuitivo:
 │   ├── pages/           # Le singole pagine del sito (Home, Chi sono, Blog, Contatti)
 │   ├── styles/          # Stili globali e tema colori (global.css)
 │   └── content.config.ts # Configurazione dei dati del blog
-├── Caddyfile            # Configurazione del server sulla VPS
+├── docs/cms-identity-setup.md # Guida per configurare l'autenticazione del CMS
 ├── astro.config.mjs     # Impostazioni principali del sito
 └── package.json         # Elenco dei comandi e delle dipendenze
 ```
@@ -38,6 +38,8 @@ Per aggiungere o modificare articoli, Elisa può accedere all'area riservata all
 `https://elisaardinghi.it/admin/`
 
 I contenuti vengono salvati automaticamente come file Markdown nella cartella `src/content/blog/`.
+
+L'accesso al pannello `/admin/` è gestito da un servizio di autenticazione separato dall'hosting del sito (vedi [docs/cms-identity-setup.md](docs/cms-identity-setup.md) per il setup iniziale).
 
 ## 🛠 Comandi Utili
 
@@ -52,11 +54,9 @@ Tutti i comandi vanno eseguiti nel terminale dalla cartella principale del proge
 
 ## 🌐 Deployment (Caricamento online)
 
-Il deploy è automatizzato tramite **GitHub Actions**. Quando viene fatto un "Push" sul ramo `main`, GitHub:
-1. Compila il progetto.
-2. Trasferisce i file via SSH sulla VPS Hetzner.
+Il deploy è automatizzato tramite **Vercel**, collegato direttamente a questo repository GitHub: ogni push sul ramo `master` avvia una build e pubblica automaticamente la nuova versione, senza bisogno di server o pipeline da mantenere.
 
-Le guide dettagliate per il setup della VPS e dei Secret di GitHub si trovano nella cartella `docs/`.
+La chiave `PUBLIC_WEB3FORMS_KEY` va impostata come variabile d'ambiente nel pannello Vercel del progetto (Project Settings → Environment Variables).
 
 ---
 *Progetto realizzato e documentato per Elisa Ardinghi.*

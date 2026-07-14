@@ -14,8 +14,16 @@
   </head>
   <body>
     <script>
-      // Semplice script per gestire il re-indirizzamento dopo il login con Netlify Identity
+      // Il sito pubblico è su Vercel, ma Netlify Identity gira su un progetto
+      // Netlify separato creato solo per questo (vedi docs/cms-identity-setup.md).
+      // Senza APIUrl il widget cercherebbe Identity sullo stesso dominio del
+      // sito, dove non esiste: va puntato esplicitamente al progetto Netlify.
       if (window.netlifyIdentity) {
+        window.netlifyIdentity.init({
+          APIUrl: "https://phenomenal-selkie-2fe138.netlify.app/.netlify/identity"
+        });
+
+        // Semplice script per gestire il re-indirizzamento dopo il login con Netlify Identity
         window.netlifyIdentity.on("init", user => {
           if (!user) {
             // Se l'utente non è loggato, monitora l'evento di login per ricaricare la pagina admin

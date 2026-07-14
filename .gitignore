@@ -26,3 +26,6 @@ pnpm-debug.log*
 # deploy SSH keys (MAI committare!)
 deploy_key
 deploy_key.pub
+
+# impostazioni locali di Claude Code (specifiche della macchina)
+.claude/settings.local.json

@@ -2,8 +2,16 @@
 # Questo file definisce come l'interfaccia di amministrazione gestisce i contenuti del sito
 
 backend:
-  name: git-gateway # Utilizza il gateway Git per l'autenticazione (solitamente via Netlify o simili)
-  branch: main      # Il ramo su cui verranno salvati i cambiamenti
+  name: git-gateway # Utilizza il gateway Git per l'autenticazione
+  branch: master    # Il ramo su cui verranno salvati i cambiamenti (branch reale del repo)
+  # Il sito pubblico gira su Vercel, ma git-gateway è un servizio di Netlify:
+  # queste due righe puntano a un progetto Netlify creato SOLO per gestire
+  # il login di Elisa (Identity) e il salvataggio su GitHub (Git Gateway).
+  # Nessun contenuto pubblico viene servito da quel progetto Netlify.
+  # Sostituisci NOME-PROGETTO con il nome reale scelto durante il setup
+  # (vedi docs/cms-identity-setup.md).
+  identity_url: "https://phenomenal-selkie-2fe138.netlify.app/.netlify/identity"
+  gateway_url: "https://phenomenal-selkie-2fe138.netlify.app/.netlify/git/github"
 
 # Gestione dei file multimediali (immagini, etc.)
 media_folder: "public/images" # Cartella fisica dove salvare i nuovi upload

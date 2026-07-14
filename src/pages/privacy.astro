@@ -1,0 +1,85 @@
+---
+// Importazione dei componenti di base, identica alle altre pagine
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Privacy e Cookie Policy" description="Informativa sul trattamento dei dati personali del sito di Elisa Ardinghi, Psicologa Clinica.">
+  <Header />
+
+  <main class="flex-grow pt-28 pb-20">
+
+    <!-- Header della pagina, stesso stile delle altre pagine di testo -->
+    <section class="max-w-4xl mx-auto px-4 md:px-6 mb-16 text-center">
+      <h1 class="text-4xl md:text-5xl font-display font-medium text-text mb-6">Privacy e Cookie Policy</h1>
+      <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+    </section>
+
+    <section class="max-w-3xl mx-auto px-4 md:px-6 prose prose-lg prose-p:text-muted prose-p:leading-relaxed max-w-none">
+
+      <h2 class="text-2xl font-display font-medium text-text mb-3 mt-10">Titolare del trattamento</h2>
+      <p>
+        Il titolare del trattamento dei dati raccolti tramite questo sito è
+        Elisa Ardinghi, Psicologa Clinica, iscritta all'Albo degli Psicologi
+        della Toscana n° 11853. Per qualsiasi richiesta relativa ai tuoi
+        dati puoi scrivere a
+        <a href="mailto:elisaardinghi9@gmail.com" class="text-primary hover:text-secondary transition-colors">elisaardinghi9@gmail.com</a>.
+      </p>
+
+      <h2 class="text-2xl font-display font-medium text-text mb-3 mt-10">Form di contatto (Web3Forms)</h2>
+      <p>
+        Quando invii il form nella pagina Contatti, i dati che inserisci
+        (nome, email, telefono se fornito, messaggio) vengono trasmessi al
+        servizio <a href="https://web3forms.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-secondary transition-colors">Web3Forms</a>,
+        che li inoltra via email a Elisa. Vengono usati esclusivamente per
+        risponderti e non sono condivisi con terzi per finalità di
+        marketing.
+      </p>
+
+      <h2 class="text-2xl font-display font-medium text-text mb-3 mt-10">Prenotazione colloqui (Cal.com)</h2>
+      <p>
+        Il widget di prenotazione integrato in home page è fornito da
+        <a href="https://cal.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-secondary transition-colors">Cal.com</a>.
+        Quando lo usi per fissare un appuntamento, i dati che inserisci
+        (nome, email, orario scelto) sono gestiti direttamente da Cal.com
+        secondo la loro informativa privacy.
+      </p>
+
+      <h2 class="text-2xl font-display font-medium text-text mb-3 mt-10">Hosting</h2>
+      <p>
+        Il sito è ospitato su <a href="https://vercel.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-secondary transition-colors">Vercel</a>,
+        che elabora i dati tecnici di navigazione (es. indirizzo IP) al solo
+        scopo di servire le pagine del sito.
+      </p>
+
+      <h2 class="text-2xl font-display font-medium text-text mb-3 mt-10">Gestione dei contenuti del blog</h2>
+      <p>
+        Gli articoli del blog vengono pubblicati da Elisa tramite un
+        pannello di amministrazione riservato, con autenticazione fornita
+        da Netlify Identity. Questo servizio riguarda solo l'accesso di
+        Elisa al pannello e non raccoglie dati dei visitatori del sito.
+      </p>
+
+      <h2 class="text-2xl font-display font-medium text-text mb-3 mt-10">Cookie</h2>
+      <p>
+        Questo sito non utilizza cookie di profilazione propri. I servizi
+        terzi sopra elencati (in particolare il widget Cal.com) possono
+        impostare cookie tecnici necessari al loro funzionamento sul
+        proprio dominio, secondo le rispettive informative.
+      </p>
+
+      <h2 class="text-2xl font-display font-medium text-text mb-3 mt-10">I tuoi diritti</h2>
+      <p>
+        In qualsiasi momento puoi chiedere accesso, rettifica o
+        cancellazione dei tuoi dati personali, scrivendo all'indirizzo
+        email indicato sopra, in conformità con il Regolamento (UE)
+        2016/679 (GDPR).
+      </p>
+
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
