@@ -7,19 +7,33 @@
     <meta name="robots" content="noindex" />
     <title>Gestione Contenuti | Elisa Ardinghi</title>
 
-    <!-- Senza slash finale (es. /admin invece di /admin/), Vercel serve questa
-         pagina senza redirect e i percorsi relativi (come config.yml) si
-         risolverebbero dalla radice del sito, dando 404. Questo tag fissa
-         la base indipendentemente da come l'URL è stato digitato. -->
+    <!-- Base robusta indipendentemente da eventuali richieste dirette senza
+         slash finale (es. /admin invece di /admin/). -->
     <base href="/admin/" />
   </head>
   <body>
-    <!-- Niente widget Netlify Identity qui: quando window.netlifyIdentity non
-         esiste, Decap CMS costruisce da solo il client di autenticazione
-         usando identity_url/gateway_url già definiti in config.yml (che
-         puntano al progetto Netlify dedicato). Il widget standalone
-         ignorava il nostro APIUrl personalizzato e chiamava sempre il
-         dominio del sito (Vercel), dove /.netlify/identity non esiste. -->
+    <!-- Gli script vanno DENTRO body (non in head): Decap CMS si aggancia a
+         document.body appena parte, e in head il body non esiste ancora. -->
+
+    <!-- Questa pagina va raggiunta tramite il dominio Netlify dedicato
+         (vedi vercel.json: /admin/* reindirizza lì), quindi Identity e
+         Git Gateway sono sullo stesso dominio: nessun APIUrl custom serve. -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <script>
+      // Gestisce il re-indirizzamento dopo il login/accettazione invito
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+
+    <!-- Libreria principale di Decap CMS (l'interfaccia vera e propria) -->
     <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
   </body>
 </html>

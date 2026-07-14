@@ -4,14 +4,10 @@
 backend:
   name: git-gateway # Utilizza il gateway Git per l'autenticazione
   branch: master    # Il ramo su cui verranno salvati i cambiamenti (branch reale del repo)
-  # Il sito pubblico gira su Vercel, ma git-gateway è un servizio di Netlify:
-  # queste due righe puntano a un progetto Netlify creato SOLO per gestire
-  # il login di Elisa (Identity) e il salvataggio su GitHub (Git Gateway).
-  # Nessun contenuto pubblico viene servito da quel progetto Netlify.
-  # Sostituisci NOME-PROGETTO con il nome reale scelto durante il setup
-  # (vedi docs/cms-identity-setup.md).
-  identity_url: "https://phenomenal-selkie-2fe138.netlify.app/.netlify/identity"
-  gateway_url: "https://phenomenal-selkie-2fe138.netlify.app/.netlify/git/github"
+  # NIENTE identity_url/gateway_url qui: Vercel reindirizza /admin/* al
+  # pannello ospitato sul progetto Netlify dedicato (stesso dominio di
+  # Identity e Git Gateway), quindi i percorsi relativi di default
+  # funzionano da soli. Vedi vercel.json e docs/cms-identity-setup.md.
 
 # Gestione dei file multimediali (immagini, etc.)
 media_folder: "public/images" # Cartella fisica dove salvare i nuovi upload
