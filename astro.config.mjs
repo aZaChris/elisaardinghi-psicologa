@@ -15,6 +15,13 @@ export default defineConfig({
   // URL pubblico del sito, necessario per la sitemap e i meta tag SEO
   site: 'https://elisaardinghi.it',
 
+  // La storia "Home" su Storyblok ha slug "home": l'editor visuale prova ad
+  // aprire l'anteprima su /home, ma la home page vive alla radice "/".
+  // Redirect statico per far funzionare quel link (nessun costo/app extra).
+  redirects: {
+    '/home': '/',
+  },
+
   vite: {
     // Configurazione dei plugin di Vite (il motore di build interno di Astro)
     plugins: [tailwindcss()]
