@@ -5,7 +5,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestione Contenuti | Elisa Ardinghi</title>
-    
+
+    <!-- Senza slash finale (es. /admin invece di /admin/), Vercel serve questa
+         pagina senza redirect e i percorsi relativi (come config.yml) si
+         risolverebbero dalla radice del sito, dando 404. Questo tag fissa
+         la base indipendentemente da come l'URL è stato digitato. -->
+    <base href="/admin/" />
+
     <!-- Script per l'autenticazione tramite Netlify Identity -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
